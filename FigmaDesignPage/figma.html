@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Figma Editor</title>
+
+  <!-- tailwind setup -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.8.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="figma.css">
+</head>
+
+<body class="h-screen bg-zinc-900 text-zinc-100 overflow-hidden">
+
+  <!-- app wrapper -->
+  <div class="h-full flex flex-col">
+
+    <!-- top bar -->
+    <div class="flex flex-wrap md:flex-nowrap items-center gap-3 md:gap-8 p-2 bg-zinc-900">
+      <span class="hidden md:inline text-sm font-semibold text-zinc-200 select-none ml-4">
+        Toolbar
+      </span>
+
+      <a href="/homepage/index.html">
+        <h2 class="text-sm bg-white/20 py-1 px-2 rounded">Back to Home</h2>
+      </a>
+
+      <button id="saveBtn"
+        class="bg-green-600 px-3 py-1 rounded text-sm hover:bg-green-700">
+        Save
+      </button>
+
+      <button id="resetBtn"
+        class="bg-red-600 px-3 py-1 rounded text-sm hover:bg-red-700">
+        Reset
+      </button>
+    </div>
+
+    <!-- tools area -->
+    <header
+      class="min-h-[3rem] bg-zinc-800 border-b border-zinc-700
+      flex flex-wrap items-center px-2 md:px-4 gap-2 md:gap-4">
+
+      <button id="moveTool" class="hover:bg-zinc-700 p-2 rounded">
+        <i class="ri-cursor-fill"></i>
+      </button>
+
+      <button id="rectTool" class="hover:bg-zinc-700 p-2 rounded">
+        <i class="ri-square-line"></i>
+      </button>
+
+      <button id="circleTool" class="hover:bg-zinc-700 p-2 rounded">
+        ◯
+      </button>
+
+      <button id="ovalTool" class="hover:bg-zinc-700 p-2 rounded">
+        ⬭
+      </button>
+
+      <button id="textTool" class="hover:bg-zinc-700 p-2 rounded">
+        <i class="ri-text"></i>
+      </button>
+
+      <!-- export side -->
+      <div class="ml-auto flex flex-wrap gap-2">
+        <button id="exportBtn"
+          class="bg-blue-600 px-3 py-1 rounded text-sm">
+          Export SVG
+        </button>
+
+        <button id="exportJsonBtn"
+          class="bg-green-600 px-3 py-1 rounded text-sm hover:bg-green-700">
+          Export JSON
+        </button>
+
+        <button id="exportHtmlBtn"
+          class="bg-purple-600 px-3 py-1 rounded text-sm hover:bg-purple-700">
+          Export HTML
+        </button>
+      </div>
+    </header>
+
+    <div class="flex flex-1 flex-col lg:flex-row">
+
+      <!-- left panel -->
+      <aside id="layers"
+        class="hidden lg:block w-56 bg-zinc-800 border-r border-zinc-700 p-3">
+        <h3 class="text-sm font-semibold mb-3">Layers</h3>
+      </aside>
+
+      <!-- center canvas -->
+      <main
+        class="flex-1 bg-zinc-850 flex items-center justify-center overflow-auto p-2">
+
+        <div
+          id="canvas"
+          class="relative
+          w-[95vw] max-w-[1000px]
+          h-[60vh] md:h-[70vh]
+          bg-white shadow-lg rounded">
+        </div>
+
+      </main>
+
+      <!-- right side panel -->
+      <aside
+        class="w-full lg:w-64
+        bg-zinc-800 border-l border-zinc-700 p-3">
+
+        <h3 class="text-sm font-semibold mb-3">Properties</h3>
+
+        <div class="space-y-3 text-sm text-zinc-300">
+          <div>
+            <label class="block mb-1">Width</label>
+            <input id="propWidth"
+              class="w-full bg-zinc-700 rounded px-2 py-1" />
+          </div>
+
+          <div>
+            <label class="block mb-1">Height</label>
+            <input id="propHeight"
+              class="w-full bg-zinc-700 rounded px-2 py-1" />
+          </div>
+
+          <div>
+            <label class="block mb-1 text-gray-400 mt-2">
+              Change BG Color
+            </label>
+            <input id="fillColor"
+              type="color"
+              class="w-full h-8 rounded" />
+          </div>
+
+          <div>
+            <label class="block text-gray-400 mt-2">
+              Change Text Color
+            </label>
+            <input id="textColor"
+              type="color"
+              class="w-full h-8 cursor-pointer" />
+          </div>
+        </div>
+
+        <!-- rotate buttons -->
+        <div class="flex gap-2 mt-4">
+          <button id="rotateLeft"
+            class="bg-zinc-700 px-2 py-1 rounded text-sm hover:bg-zinc-600">
+            ⟲ Rotate
+          </button>
+
+          <button id="rotateRight"
+            class="bg-zinc-700 px-2 py-1 rounded text-sm hover:bg-zinc-600">
+            Rotate ⟳
+          </button>
+        </div>
+<div>
+  <label class="block mb-1 text-gray-400 mt-2">
+    Text Size
+  </label>
+
+  <input
+    id="textSize"
+    type="range"
+    min="8"
+    max="80"
+    value="16"
+    class="w-full cursor-pointer"
+  />
+</div>
+      </aside>
+    </div>
+  </div>
+
+
+  <script src="figma.js"></script>
+</body>
+</html>
