@@ -798,3 +798,40 @@ textSizeInput.addEventListener("input", () => {
 
   state.selectedElement.style.fontSize = textSizeInput.value + "px";
 });
+
+document.addEventListener("keydown", (e) => {
+  if (!state.selectedElement) return;
+  if (state.isEditingText) return;
+
+  let step = e.shiftKey ? 10 : 1;
+
+  let left = parseInt(state.selectedElement.style.left) || 0;
+  let top = parseInt(state.selectedElement.style.top) || 0;
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    left -= step;
+  }
+
+  if (e.key === "ArrowRight") {
+    e.preventDefault();
+    left += step;
+  }
+
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    top -= step;
+  }
+
+  if (e.key === "ArrowDown") {
+    e.preventDefault();
+    top += step;
+  }
+
+  // canvas boundary
+  left = Math.max(0, Math.min(left, canvas.clientWidth - state.selectedElement.offsetWidth));
+  top = Math.max(0, Math.min(top, canvas.clientHeight - state.selectedElement.offsetHeight));
+
+  state.selectedElement.style.left = left + "px";
+  state.selectedElement.style.top = top + "px";
+});
