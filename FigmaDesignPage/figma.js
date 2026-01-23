@@ -253,10 +253,11 @@ function deselectElement() {
 
 document.addEventListener("keydown", (e) => {
   const tag = document.activeElement.tagName;
+
+  if (tag === "INPUT" || tag === "TEXTAREA") return;
+
   if (state.isEditingText) return;
-
   if (document.activeElement?.isContentEditable) return;
-
   if (!state.selectedElement) return;
 
   if (e.key === "Delete" || e.key === "Backspace") {
