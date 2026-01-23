@@ -148,6 +148,13 @@ function selectElement(el) {
   textSizeInput.value = "";
 }
 
+if (el.dataset.type === "text") {
+  textValueInput.value = el.innerText || "";
+} else {
+  textValueInput.value = "";
+}
+
+
 
 }
 
@@ -424,29 +431,29 @@ propWidth.addEventListener("keydown", (e) => {
 function applyWidth() {
   if (!state.selectedElement) return;
 
-  const value = Number(propWidth.value);
+  let value = Number(propWidth.value);
+  if (!value || value < 30) return;
 
-  if (!value || value < 30) {
-    propWidth.value = state.selectedElement.offsetWidth;
-    return;
-  }
+  const maxWidth = canvas.clientWidth - state.selectedElement.offsetLeft;
+  value = Math.min(value, maxWidth);
 
   state.selectedElement.style.width = value + "px";
 }
 
 
+
 propHeight.addEventListener("change", () => {
   if (!state.selectedElement) return;
 
-  const value = Number(propHeight.value);
+  let value = Number(propHeight.value);
+  if (!value || value < 30) return;
 
-  if (!value || value < 30) {
-    propHeight.value = state.selectedElement.offsetHeight;
-    return;
-  }
+  const maxHeight = canvas.clientHeight - state.selectedElement.offsetTop;
+  value = Math.min(value, maxHeight);
 
   state.selectedElement.style.height = value + "px";
 });
+
 
 // ===============================
 // TEXT Writing logics
@@ -467,9 +474,15 @@ canvas.addEventListener("mousedown", (e) => {
   textEl.style.height = "40px";
   textEl.style.cursor = "text";
 
-  textEl.contentEditable = "false";
+  textEl.dataset.type = "text";
 
-  
+  textEl.contentEditable = "false";
+   
+  textEl.addEventListener("input", () => {
+  if (state.selectedElement !== textEl) return;
+  textValueInput.value = textEl.innerText;
+});
+
 
   // layer
   textCount++;
@@ -837,3 +850,14 @@ document.addEventListener("keydown", (e) => {
   state.selectedElement.style.top = top + "px";
 });
 
+
+// TextBox Content 
+
+const textValueInput = document.getElementById("textValueInput");
+
+textValueInput.addEventListener("input", () => {
+  if (!state.selectedElement) return;
+  if (state.selectedElement.dataset.type !== "text") return;
+
+  state.selectedElement.innerText = textValueInput.value;
+});
