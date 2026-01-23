@@ -213,3 +213,19 @@ function updateAuthButton() {
 }
 
 updateAuthButton();
+
+let getStart = document.querySelector('#getStart');
+
+getStart.addEventListener('click', () => {
+
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (!isLoggedIn) {
+    // user not logged in
+    openLogin();
+  } else {
+    // user logged in
+    window.location.href = "./FigmaDesignPage/figma.html";
+  }
+
+});
