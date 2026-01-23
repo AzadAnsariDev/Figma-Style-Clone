@@ -81,6 +81,7 @@ Deployed on Vercel:
 ---
 
 ## 📁 Project Structure
+```
 FIGMA-LITE
 │
 ├── index.html
@@ -99,6 +100,7 @@ FIGMA-LITE
 └── tailwind.config.js
 
 ---
+```
 
 ## 🚀 How to run locally
 
