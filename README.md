@@ -1,44 +1,74 @@
-# Figma Lite – A Simple Figma-Like Editor
+# Figma Lite – Web Design Editor
 
-This is a lightweight Figma-like design editor built using **HTML, Tailwind CSS, and Vanilla JavaScript**.  
-The goal of this project was to understand how real design tools work internally, like canvas handling, layers, drag, resize, and export.
-
-No frameworks, no external heavy libraries – everything is written from scratch.
-
----
-
-## ✨ Features
-
-- Create **Rectangles, Circles, Ovals, and Text**
-- Select, drag, resize, and rotate elements
-- Move elements using **mouse or arrow keys**
-- Double click text to edit
-- Change background color and text color
-- Control text size from properties panel
-- Layer panel for selecting elements
-- Save canvas data in **localStorage**
-- Reload keeps your previous work
-- Export design as:
-  - SVG
-  - JSON
-  - HTML
-- Fake login system (for flow only)
-- Custom cursor like Figma
-- Fully responsive layout
+## Project Idea
+Figma Lite is a lightweight, browser-based design editor inspired by Figma.  
+It allows users to create, select, move, resize, and delete shapes and text
+elements inside a canvas using simple mouse interactions.
 
 ---
 
-## 🧠 Why this project
-
-I built this project to:
-- Learn how design tools like Figma actually work
-- Practice DOM manipulation and state handling
-- Understand canvas-style editors without using libraries
-- Improve logical thinking and clean JavaScript
-
-This is **not a clone**, it is a learning-focused implementation.
+## How the Project Was Built
+This project was built using pure HTML, Tailwind CSS, and Vanilla JavaScript.
+The application is divided into a landing page and a main editor page to keep
+the structure clean and organized.  
+JavaScript handles all canvas interactions, tool switching, and state
+management, while Tailwind CSS is used for fast and responsive UI styling.
 
 ---
+
+## Logic / Approach
+A state-based approach was used to manage the editor behavior.  
+The state keeps track of the active tool, selected element, dragging and
+resizing status, and text editing mode.  
+Mouse events (mousedown, mousemove, mouseup) are used to control element
+creation, movement, resizing, and selection within canvas boundaries only.
+Each element is dynamically created and managed inside the canvas to avoid
+unwanted actions outside the editor.
+
+---
+
+## Features
+- Rectangle tool (create, move, resize, delete)
+- Text tool with edit and save behavior
+- Move tool for selecting and dragging elements
+- Canvas boundary restrictions
+- Layers panel with auto-naming
+- Properties panel for width, height, and color
+- Keyboard delete support
+- Responsive layout
+
+---
+
+## Tech Stack
+- HTML
+- Tailwind CSS
+- JavaScript (Vanilla)
+- GitHub (Version Control)
+- Vercel (Deployment)
+
+---
+
+## Time Taken
+Approximately 2 days to design, develop, test, and refine the project.
+
+---
+
+## AI Tools Used
+ChatGPT was used for understanding logic, debugging issues, improving code
+structure, and optimizing user interactions. I tried my best to make logics
+but canvas was purely new logics for me, so i used Chatgpt to see logic and 
+then understand how it will work and then put it in my code.
+
+---
+
+## Live Demo
+Deployed on Vercel:  
+👉 https://figma-style-clone.vercel.app
+
+---
+
+## GitHub Repository
+👉 https://github.com/azadansaridev/figma-style-clone
 
 ## 🛠 Tech Stack
 
