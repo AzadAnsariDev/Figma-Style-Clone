@@ -69,7 +69,7 @@
   <main class="h-full w-full flex flex-col">
 
     <!-- NAVBAR -->
-    <nav class="w-full px-4 md:px-8 h-16 flex items-center justify-between border-b">
+    <nav class="relative w-full px-4 md:px-8 h-16 flex items-center justify-between border-b">
 
       <!-- Left -->
       <div class="flex items-center gap-4">
@@ -122,12 +122,12 @@
     <!-- DROPDOWN -->
     <div
       id="productsDropdown"
-      class="absolute left-6 top-16 w-56 bg-white rounded-lg shadow-lg
+      class="absolute z-50 left-6 top-16 w-56 bg-white rounded-lg shadow-lg
       overflow-hidden max-h-0 transition-all duration-300 ease-in-out"
     >
 <button
   id="figmaDesignBtn"
-  class="w-full text-left px-4 py-3 hover:bg-gray-100">
+  class="w-full text-left px-4 py-3 hover:bg-gray-100 z-50">
   🎨 Figma Design
 </button>
     </div>

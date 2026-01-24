@@ -1,38 +1,48 @@
 const customCursor = document.querySelector('#customCursor');
 const handCursor = document.querySelector('#handCursor');
+const isTouchDevice =
+  "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
   let mousestarted = false
 
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX;
-  const y = e.clientY;
+if (!isTouchDevice && window.matchMedia("(pointer: fine)").matches) {
 
-  if(!mousestarted){
-    customCursor.style.left = x + "px";
-    customCursor.style.top = y + "px";
-    handCursor.style.left = x + "px";
-    handCursor.style.top = y + "px";
-  
-    const clickable = e.target.closest("button, a, [role='button']");
-  
-    if (clickable) {
-      customCursor.style.display = "none";
-      handCursor.style.display = "block";
-    } else {
-      handCursor.style.display = "none";
-      customCursor.style.display = "block";
+
+  document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    if(!mousestarted){
+      customCursor.style.left = x + "px";
+      customCursor.style.top = y + "px";
+      handCursor.style.left = x + "px";
+      handCursor.style.top = y + "px";
+    
+      const clickable = e.target.closest("button, a, [role='button']");
+    
+      if (clickable) {
+        customCursor.style.display = "none";
+        handCursor.style.display = "block";
+      } else {
+        handCursor.style.display = "none";
+        customCursor.style.display = "block";
+      }
     }
-  }
-});
+  });
 
-document.addEventListener('mouseenter', ()=>{
-  customCursor.style.display = "block";
-}
-)
-document.addEventListener('mouseleave', ()=>{
+  document.addEventListener('mouseenter', () => {
+    customCursor.style.display = "block";
+  });
+
+  document.addEventListener('mouseleave', () => {
+    customCursor.style.display = "none";
+  });
+
+} else {
+  // mobile / touch devices
   customCursor.style.display = "none";
+  handCursor.style.display = "none";
 }
-)
 
 // Product Btn Logics
 const dropdown = document.querySelector("#productsDropdown");

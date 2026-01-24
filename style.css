@@ -55,3 +55,17 @@ input{
   }
 }
 
+
+@media (pointer: coarse) {
+  #customCursor,
+  #handCursor {
+    display: none !important;
+    pointer-events: none !important;
+  }
+}
+#customCursor,
+#handCursor {
+  pointer-events: none;
+}
+
+
