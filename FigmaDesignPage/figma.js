@@ -861,3 +861,14 @@ textValueInput.addEventListener("input", () => {
 
   state.selectedElement.innerText = textValueInput.value;
 });
+
+const gridToggle = document.getElementById("gridToggle");
+
+gridToggle.addEventListener("click", () => {
+  canvas.classList.toggle("canvas-grid");
+  if(gridToggle.innerText == "Add Grid"){
+    gridToggle.innerText = "Remove Grid"
+  }else{
+    gridToggle.innerText = "Add Grid"
+  }
+});

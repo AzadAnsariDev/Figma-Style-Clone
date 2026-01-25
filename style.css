@@ -22,7 +22,6 @@ button {
   outline: none;
   cursor: none !important;
 
-   
 }
 button:hover {
   transform: translateY(-1px);
@@ -69,3 +68,28 @@ input{
 }
 
 
+/* GRID + CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 24px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.card {
+  background: rgba(255,255,255,.85);
+  padding: 32px;
+  border-radius: 20px;
+  transition: .3s;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0,0,0,.12);
+}
+
+@media (max-width: 768px) {
+  .backdrop-blur-md {
+    backdrop-filter: none;
+  }
+}

@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Figma Editor</title>
 
-  <!-- tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <link
@@ -16,192 +15,196 @@
   <link rel="stylesheet" href="figma.css">
 </head>
 
-<body class="h-screen bg-zinc-900 text-zinc-100 overflow-hidden">
+<body class="h-screen bg-[#0b1020] text-zinc-100 overflow-hidden">
 
-  
   <div class="h-full flex flex-col">
 
     <!-- TOP BAR -->
-    <div class="flex flex-wrap items-center gap-2 p-2 bg-zinc-900 border-b border-zinc-800">
-      <span class="hidden md:inline text-sm font-semibold text-zinc-200 ml-2">
+    <div class="flex items-center gap-3 px-4 py-2 bg-[#020617] border-b border-white/5">
+      <span class="hidden md:inline text-xs uppercase tracking-widest text-zinc-400">
         Toolbar
       </span>
 
       <a href="../index.html">
-        <h2 class="text-sm bg-white/20 py-1 px-2 rounded">
+        <h2 class="text-xs bg-white/10 hover:bg-white/15 px-3 py-1 rounded-md">
           Back to Home
         </h2>
       </a>
 
       <button id="saveBtn"
-        class="bg-green-600 px-3 py-1 rounded text-sm hover:bg-green-700">
+        class="bg-emerald-600/90 hover:bg-emerald-600 px-3 py-1 rounded-md text-sm">
         Save
       </button>
 
       <button id="resetBtn"
-        class="bg-red-600 px-3 py-1 rounded text-sm hover:bg-red-700">
+        class="bg-red-600/90 hover:bg-red-600 px-3 py-1 rounded-md text-sm">
         Reset
       </button>
 
-      <!-- mobile layers-->
       <button
-        class="lg:hidden bg-zinc-700 px-3 py-1 rounded text-sm"
+        class="lg:hidden ml-auto bg-white/10 px-3 py-1 rounded-md text-sm"
         onclick="document.getElementById('layers').classList.toggle('hidden')">
         Layers
       </button>
+
+      <button
+  id="gridToggle"
+      class=" px-3 py-1 rounded-md text-sm
+         bg-white/10 text-zinc-200
+         hover:bg-white/20
+         transition">
+   Remove Grid
+</button>
+
     </div>
 
     <!-- TOOLS BAR -->
     <header
-      class="min-h-[3rem] bg-zinc-800 border-b border-zinc-700
-      flex flex-wrap items-center px-2 gap-2">
+      class="min-h-[3rem] bg-[#0f172a] border-b border-white/5
+             flex items-center px-3 gap-2">
 
-      <button id="moveTool" class="hover:bg-zinc-700 p-2 rounded text-lg">
+      <button id="moveTool" class="h-9 w-9 flex items-center justify-center rounded hover:bg-white/10">
         <i class="ri-cursor-fill"></i>
       </button>
 
-      <button id="rectTool" class="hover:bg-zinc-700 p-2 rounded text-lg">
+      <button id="rectTool" class="h-9 w-9 flex items-center justify-center rounded hover:bg-white/10">
         <i class="ri-square-line"></i>
       </button>
 
-      <button id="circleTool" class="hover:bg-zinc-700 p-2 rounded text-lg">
+      <button id="circleTool" class="h-9 w-9 flex items-center justify-center rounded hover:bg-white/10">
         ◯
       </button>
 
-      <button id="ovalTool" class="hover:bg-zinc-700 p-2 rounded text-lg">
+      <button id="ovalTool" class="h-9 w-9 flex items-center justify-center rounded hover:bg-white/10">
         ⬭
       </button>
 
-      <button id="textTool" class="hover:bg-zinc-700 p-2 rounded text-lg">
+      <button id="textTool" class="h-9 w-9 flex items-center justify-center rounded hover:bg-white/10">
         <i class="ri-text"></i>
       </button>
 
-      <!-- EXPORT btn -->
-      <div class="w-full flex gap-2 mt-2 md:mt-0 md:w-auto md:ml-auto">
-
+      <!-- EXPORT -->
+      <div class="ml-auto flex gap-2">
         <button id="exportBtn"
-          class="bg-blue-600 px-3 py-1 rounded text-sm">
+          class="bg-blue-600/90 hover:bg-blue-600 px-3 py-1 rounded-md text-sm">
           Export SVG
         </button>
 
         <button id="exportJsonBtn"
-          class="bg-green-600 px-3 py-1 rounded text-sm hover:bg-green-700">
+          class="bg-emerald-600/90 hover:bg-emerald-600 px-3 py-1 rounded-md text-sm">
           Export JSON
         </button>
 
         <button id="exportHtmlBtn"
-          class="bg-purple-600 px-3 py-1 rounded text-sm hover:bg-purple-700">
+          class="bg-purple-600/90 hover:bg-purple-600 px-3 py-1 rounded-md text-sm">
           Export HTML
         </button>
       </div>
     </header>
 
     <!-- MAIN AREA -->
-    <div class="flex flex-1 flex-col lg:flex-row">
+    <div class="flex flex-1 overflow-hidden">
 
       <!-- LEFT PANEL -->
       <aside
         id="layers"
-        class="hidden lg:block w-56 bg-zinc-800 border-r border-zinc-700 p-3">
-        <h3 class="text-sm font-semibold mb-3">Layers</h3>
+        class="hidden lg:block w-56 bg-[#0f172a] border-r border-white/5 p-3">
+        <h3 class="text-xs uppercase tracking-widest text-zinc-400 mb-3">
+          Layers
+        </h3>
       </aside>
 
       <!-- CANVAS -->
       <main
-        class="flex-1 bg-zinc-850 flex items-start justify-center overflow-auto p-1 md:p-2">
+        class="flex-1 bg-[#020617] flex items-center justify-center overflow-auto p-4">
 
         <div
           id="canvas"
           class="relative
-          w-[95vw] max-w-[1000px]
-          h-[80vh]
-          bg-white shadow-lg rounded
-          touch-manipulation">
+                canvas-grid
+                 w-[95vw] max-w-[1000px]
+                 h-[80vh]
+                 bg-white rounded-xl
+                 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)]
+                 touch-manipulation">
         </div>
+
 
       </main>
 
-      <!-- PROPERTIES PANEL -->
+      <!-- PROPERTIES -->
       <aside
-        class="w-full lg:w-64
-        bg-zinc-800 border-t lg:border-l border-zinc-700
-        p-3
-        fixed lg:static bottom-0 left-0
-        max-h-[45vh] lg:max-h-none
-        overflow-auto">
+        class="w-full lg:w-64 bg-[#0f172a]
+               border-t lg:border-l border-white/5
+               p-4
+               fixed lg:static bottom-0 left-0
+               max-h-[45vh] lg:max-h-none
+               overflow-auto">
 
-        <h3 class="text-sm font-semibold mb-1">Properties</h3>
+        <h3 class="text-xs uppercase tracking-widest text-zinc-400 mb-4">
+          Properties
+        </h3>
 
-        <div class="space-y-3 text-sm text-zinc-300">
+        <div class="space-y-4 text-sm text-zinc-300">
 
           <div>
             <label class="block mb-1">Width</label>
-            <input
-              id="propWidth"
-              class="w-full bg-zinc-700 rounded px-2 py-1 text-base" />
+            <input id="propWidth"
+              class="w-full bg-[#020617] border border-white/10 rounded px-2 py-1" />
           </div>
+          <div class="h-px bg-white/5 my-3"></div>
+
 
           <div>
             <label class="block mb-1">Height</label>
-            <input
-              id="propHeight"
-              class="w-full bg-zinc-700 rounded px-2 py-1 text-base" />
+            <input id="propHeight"
+              class="w-full bg-[#020617] border border-white/10 rounded px-2 py-1" />
           </div>
 
-          <div>
-            <label class="block mb-1 text-gray-400">
-              Change BG Color
-            </label>
-            <input
-              id="fillColor"
-              type="color"
-              class="w-full h-8 rounded" />
-          </div>
+          <div class="h-px bg-white/5 my-3"></div>
+
 
           <div>
-            <label class="block mb-1 text-gray-400">
-              Change Text Color
-            </label>
-            <input
-              id="textColor"
-              type="color"
-              class="w-full h-8 cursor-pointer" />
+            <label class="block mb-1 text-zinc-400">Change BG Color</label>
+            <input id="fillColor" type="color" class="w-full h-8 rounded" />
           </div>
 
+          <div class="h-px bg-white/5 my-3"></div>
+
+
           <div>
-            <label class="block mb-1 text-gray-400">
-              Text Content
-            </label>
-            <input
-              id="textValueInput"
-              type="text"
-              class="w-full bg-zinc-700 rounded px-2 py-1 text-base text-white"
+            <label class="block mb-1 text-zinc-400">Change Text Color</label>
+            <input id="textColor" type="color" class="w-full h-8" />
+          </div>
+
+          <div class="h-px bg-white/5 my-3"></div>
+
+
+          <div>
+            <label class="block mb-1 text-zinc-400">Text Content</label>
+            <input id="textValueInput"
+              class="w-full bg-[#020617] border border-white/10 rounded px-2 py-1"
               placeholder="Edit text" />
           </div>
 
-          <!-- ROTATE -->
-          <div class="flex gap-2 mt-1">
+          <div class="h-px bg-white/5 my-3"></div>
+
+
+          <div class="flex gap-2">
             <button id="rotateLeft"
-              class="bg-zinc-700 px-2 py-1 rounded text-sm hover:bg-zinc-600">
+              class="flex-1 bg-white/10 hover:bg-white/15 px-2 py-1 rounded">
               ⟲ Rotate
             </button>
-
             <button id="rotateRight"
-              class="bg-zinc-700 px-2 py-1 rounded text-sm hover:bg-zinc-600">
+              class="flex-1 bg-white/10 hover:bg-white/15 px-2 py-1 rounded">
               Rotate ⟳
             </button>
           </div>
+        <div class="h-px bg-white/5 my-3"></div>
 
           <div>
-            <label class="block mb-1 text-gray-400 mt-2">
-              Text Size
-            </label>
-            <input
-              id="textSize"
-              type="range"
-              min="8"
-              max="80"
-              value="16"
+            <label class="block mb-1 text-zinc-400">Text Size</label>
+            <input id="textSize" type="range" min="8" max="80"
               class="w-full cursor-pointer" />
           </div>
 
